@@ -1,0 +1,18 @@
+CREATE DATABASE fasks;
+
+USE fasks;
+
+CREATE TABLE users (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	username VARCHAR(50) UNIQUE,
+  password VARCHAR(50)
+);
+
+CREATE TABLE tasks (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id INT,
+	name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  status VARCHAR(40) DEFAULT('UNDONE'),
+  FOREIGN KEY(user_id) REFERENCES users(id)
+);
