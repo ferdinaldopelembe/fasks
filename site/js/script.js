@@ -39,8 +39,12 @@ function createTaskCard(task) {
 
   divDelete.onclick = async () => {
     const task_id = task.id;
+
+    if (!confirm("Tem certeza que pretende eliminar esta tarefa?")) return;
     await fetch(`api/delete_task.php?task_id=${task_id}`);
-    getAllTasks();
+
+    await getAllTasks();
+    await refreshDashboard();
   };
 
   taskCard.appendChild(taskName);
@@ -71,6 +75,9 @@ function refreshDashboard() {
       const total = stats.total_tasks;
       const done = stats.done_tasks;
       const undone = stats.undone_tasks;
+      const noTasks = document.getElementById("no-tasks");
+
+      noTasks.style.display = total == 0 ? "flex" : "none";
 
       Array.from(document.getElementsByClassName("total_tasks")).forEach(
         (element) => {

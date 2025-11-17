@@ -101,7 +101,6 @@
     }
   </style>
   <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
-
 </head>
 <body>
   
@@ -126,7 +125,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 ?>
 
   <form class="right" method="POST" action="#">
-      <h2>Login</h2>
+      <h2>Registar</h2>
       <?php
       if (isset($message)) {
         echo '<span class=\'message\'>' . $message . '</span>'; 
@@ -140,8 +139,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         <i class="fa-solid fa-lock"></i>
         <input type="password" placeholder="criar senha" name="password" required>
       </div>
-      <input type="submit" value="SIGN IN">
-      <p style="color: #6a6a6aff">ainda não tem uma conta? <a style="text-decoration: none; color: var(--primary);" href="registar.php">registar</a></p>
-    </form>
+      <div style="margin-bottom: 12px;" class="password-input field">
+        <i class="fa-solid fa-lock"></i>
+        <input  type="password" placeholder="criar senha" name="password" required>
+      </div>
+      <input type="submit" value="SIGN UP">
+      <p style="color: #6a6a6aff">já possui uma conta? <a style="text-decoration: none; color: var(--primary);" href="login.php">entrar</a></p>
+  </form>
 </body>
 </html>
