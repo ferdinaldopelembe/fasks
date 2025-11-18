@@ -16,6 +16,30 @@ function handleIsLogged () {
   }
 }
 
+function registerUser ($username, $password): string {
+
+  init_session();
+
+  $con = (new Database())->getConnection();
+  $query = $con->prepare("INSERT INTO users (username, password) VALUES (?,?)");
+  $query->bind_param ("ss", $username, $password);
+
+  $check_username = $con->prepare('SELECT * FROM users WHERE username = ?');
+  $check_username->bind_param('s', $username);
+  
+  if ($check_username->execute() && $check_username->get_result()->num_rows > 0) {
+    return 'Tente outro nome de usuário!';
+  }
+
+  if ($query->execute()) {
+    $_SESSION['username'] = $username;
+    return '';
+  }
+
+  return 'Erro de consulta ou de conexão!';
+
+}
+
 function loginUser ($username, $password) {
  
   init_session();

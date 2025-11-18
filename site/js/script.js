@@ -76,8 +76,10 @@ function refreshDashboard() {
       const done = stats.done_tasks;
       const undone = stats.undone_tasks;
       const noTasks = document.getElementById("no-tasks");
+      const title = document.getElementById("task-title");
 
-      noTasks.style.display = total == 0 ? "flex" : "none";
+      title.style.display = noTasks.style.display =
+        total == 0 ? "flex" : "none";
 
       Array.from(document.getElementsByClassName("total_tasks")).forEach(
         (element) => {

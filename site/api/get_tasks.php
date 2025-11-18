@@ -10,7 +10,7 @@ header('Content-Type: application/json');
 $username = $_SESSION['username'];
 $conn = (new Database())->getConnection();
 $query = $conn->prepare('SELECT tasks.id, tasks.name, tasks.description, tasks.status from tasks
-INNER JOIN users ON (SELECT id FROM users WHERE username = ?) = tasks.user_id;');
+INNER JOIN users ON users.id = tasks.user_id WHERE username = ?');
 $query->bind_param('s', $username); 
 
 

@@ -114,12 +114,18 @@ $message;
 if (isset($_POST['username']) && isset($_POST['password'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
-
-  if (loginUser($username, $password)) {
-    header('Location: index.php');
+  $confirm_password = $_POST['confirm-password'];
+  
+  if ($confirm_password != $password) {
+    $message = 'As senhas não correspondem!';
   } else {
-    $message = 'invalid credentials, try again!';
+    $message = registerUser($username, $password);
   }
+
+  if ($message == '') {
+    header('Location: index.php');
+  }
+
 }
 
 ?>
@@ -141,7 +147,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
       </div>
       <div style="margin-bottom: 12px;" class="password-input field">
         <i class="fa-solid fa-lock"></i>
-        <input  type="password" placeholder="criar senha" name="password" required>
+        <input  type="password" placeholder="criar senha" name="confirm-password" required>
       </div>
       <input type="submit" value="SIGN UP">
       <p style="color: #6a6a6aff">já possui uma conta? <a style="text-decoration: none; color: var(--primary);" href="login.php">entrar</a></p>

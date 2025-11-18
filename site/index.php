@@ -6,7 +6,6 @@ init_session();
 handleIsLogged();
 
 
-
 $username = $_SESSION['username'];
 
 ?>
@@ -19,14 +18,15 @@ $username = $_SESSION['username'];
     <title>Fasks</title>
     <style>
       :root {
-        --border-radius: 8px;
+        --border-radius: 4px;
         --shadow: 0 4px 10px rgba(0, 0, 0, 0.36);
-        --transition: all 0.3s ease;
+        --transition: all 0.4s ease;
         --header-height: 56px;
         --primary: #2445a2ff;
         --primary-gradient: linear-gradient(330deg, #2b2358ff, #2445a2ff);
       }
       body {
+        overflow: hidden;
         background-color: #eee;
       }
       * {
@@ -37,6 +37,7 @@ $username = $_SESSION['username'];
         transition: var(--transition);
       }
       header {
+        user-select: none;
         height: var(--header-height);
         display: flex;
         flex-direction: row;
@@ -52,6 +53,7 @@ $username = $_SESSION['username'];
         backdrop-filter: blur(5px);
       }
       main {
+        user-select: none;
         padding: 12px 0;
       }
       .logo {
@@ -230,8 +232,8 @@ $username = $_SESSION['username'];
         width: 100vw;
         height: 100vh;
         top: 0;
-        left: 0;
-        display: none;
+        left: -120vw;
+        display: flex;
         align-items: center;
         justify-content: center;
       }
@@ -321,15 +323,54 @@ $username = $_SESSION['username'];
       #no-tasks i {
         font-size: 2rem;
       }
+      .user:hover > .user-menu {
+        right: 24px;
+      }
+      .user-menu {
+        transition: var(--transition);
+        position: absolute;
+        top: 40px;
+        right: -300px;
+        box-shadow: var(--shadow);
+        background-color: #fff;
+        padding: 8px;
+        border-radius: 4px;
+        gap: 2px;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+      }
+      .user-menu a {
+        font-size: 12pt;
+        color: #000;
+        cursor: pointer;
+        border-radius: 4px;
+        padding: 4px;
+        align-items: center;
+        display: flex;
+        gap: 4px;
+        text-decoration: none;
+        text-align: left;
+        border: none;
+        width: 100%;
+      }
+      .user-menu a:hover {
+        background-color: #dededeff;
+      }
     </style>
     <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css" />
   </head>
   <body>
     <header>
       <div class="logo"><span>F</span>ASKS</div>
-      <div title="<?php echo $username ?>"
-        class="user">
+      <div class="user">
         <?php echo strtoupper(substr($username,0, 2)) ?>
+        <div class="user-menu">
+          <a><div title="<?php echo $username ?>" class="boing"><i style="color: blue;" class="fa-solid fa-user"></i></div> <?php echo $username ?></a>
+          <a><div class="boing"><i style="color: orange;" class="fa-solid fa-cog"></i></div>configurações</a>
+          <a><div class="boing"><i style="color: rebeccapurple;" class="fa-solid fa-question"></i></div>ajuda</a>
+          <a id="log-out"><div class="boing"><i style="color: red;" class="fas fa-sign-out-alt"></i></div> sair da conta</a>
+        </div>
       </div>
     </header>
     <main>
@@ -367,7 +408,7 @@ $username = $_SESSION['username'];
       </section>
 
       <section class="tasks">
-        <h2 class="tasks-label">Minhas tarefas</h2>
+        <h2 id="task-title" class="tasks-label">Minhas tarefas</h2>
         <div id="no-tasks" class="no-tasks">
           <i class="fa-solid fa-folder-open"></i>
           <p>A tua sua lista está vazia. Crie uma nova tarefa para começar.</p>
@@ -419,12 +460,12 @@ $username = $_SESSION['username'];
       const subitButtom = document.getElementById("submit-task");
 
       createButton.onclick = () => {
-        taskFormContainer.style.display = "flex";
+        taskFormContainer.style.left = "0";
         window.scrollTo(0, 0);
       };
 
       cancelButton.onclick = () => {
-        taskFormContainer.style.display = "none";
+        taskFormContainer.style.left = "-120vw";
       };
 
       document
@@ -435,6 +476,14 @@ $username = $_SESSION['username'];
           }
         });
 
+
+        document.getElementById('log-out').onclick = async ()=> {
+          if (confirm("Tem certeza que pretende sair desta conta?")) {
+            await fetch('api/log_out.php');
+            location.reload();
+          }
+        }
+
       document.getElementById("create-form").onsubmit = async () => {
         const task_name = document.getElementById("task-name").value;
         const task_description =
@@ -444,7 +493,7 @@ $username = $_SESSION['username'];
         fetch(
           `api/create_task.php?task_name=${task_name}&task_description=${task_description}`
         );
-        taskFormContainer.style.display = "none";
+        taskFormContainer.style.left = "-120vw";
       };
     </script>
     <script src="./js/script.js?v=<?php echo time() ?>"></script>

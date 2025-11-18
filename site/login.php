@@ -119,7 +119,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
   if (loginUser($username, $password)) {
     header('Location: index.php');
   } else {
-    $message = 'invalid credentials, try again!';
+    $message = 'credenciais incorretas. tente novamente.';
   }
 }
 
