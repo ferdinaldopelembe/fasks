@@ -6,8 +6,10 @@ require_once("./../../includes/functions.php");
 init_session();
 
 $username = $_SESSION["username"];
-$task_name = $_GET["task_name"]; 
-$task_description = $_GET["task_description"];
+$data = json_decode(file_get_contents("php://input"), true);
+
+$task_name = $data['task_name']; 
+$task_description = $data['task_description'];
 
 $conn = (new Database())->getConnection();
 $query= $conn->prepare("INSERT INTO tasks(user_id, name, description, status)

@@ -22,7 +22,8 @@ function createTaskCard(task) {
   taskName.innerText = task.name;
 
   const taskDescription = document.createElement("p");
-  taskDescription.innerText = task.description;
+  taskDescription.innerHTML = task.description.replace(/\n/g, "<br>");
+  // taskDescription.style.whiteSpace = "pre-wrap";
 
   const markDone = document.createElement("input");
 
@@ -78,8 +79,8 @@ function refreshDashboard() {
       const noTasks = document.getElementById("no-tasks");
       const title = document.getElementById("task-title");
 
-      title.style.display = noTasks.style.display =
-        total == 0 ? "flex" : "none";
+      title.style.display = total == 0 ? "none" : "flex";
+      noTasks.style.display = total == 0 ? "flex" : "none";
 
       Array.from(document.getElementsByClassName("total_tasks")).forEach(
         (element) => {

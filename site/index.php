@@ -18,15 +18,16 @@ $username = $_SESSION['username'];
     <title>Fasks</title>
     <style>
       :root {
+        --border: 1px solid #b0c1edff;
+        --grid-gap: 12px;
         --border-radius: 4px;
-        --shadow: 0 4px 10px rgba(0, 0, 0, 0.36);
+        --shadow: 0 4px 10px #00000034;
         --transition: all 0.4s ease;
         --header-height: 56px;
         --primary: #2445a2ff;
         --primary-gradient: linear-gradient(330deg, #2b2358ff, #2445a2ff);
       }
       body {
-        overflow: hidden;
         background-color: #eee;
       }
       * {
@@ -37,8 +38,9 @@ $username = $_SESSION['username'];
         transition: var(--transition);
       }
       header {
+        overflow: hidden;
         user-select: none;
-        height: var(--header-height);
+        /* height: var(--header-height); */
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -49,19 +51,36 @@ $username = $_SESSION['username'];
         top: 0;
         width: 100%;
         border-bottom: 1px solid #b0c1edff;
-        background-color: #ffffff8a;
+        background-color: #ffffffb0;
         backdrop-filter: blur(5px);
       }
       main {
+        overflow-x: hidden;
         user-select: none;
         padding: 12px 0;
       }
       .logo {
+        border: 1px solid #b0c1edff;
+        /* border-radius: 0px 6px 0px 6px; */
+        /* box-shadow: var(--shadow); */
+        padding-right: 4px;
+        background-color: #fff;
+        display: flex;
+        color: var(--primary);
+        font-family: 'Cascadia Mono';
         font-size: 35px;
-        font-weight: bold;
+        font-weight: bolder;
       }
       .logo span {
-        color: var(--primary);
+        /* border-radius: 0px 6px 0px 6px; */
+        margin-right: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Cascadia Mono';
+        color: #fff;
+        width: 30px;
+        background-color: var(--primary);
       }
       .user {
         cursor: pointer;
@@ -80,7 +99,8 @@ $username = $_SESSION['username'];
         background-color: rebeccapurple;
       }
       .card {
-        height: 120px;
+        border: var(--border);
+        height: 140px;
         position: relative;
         padding: 8px;
         display: flex;
@@ -113,17 +133,24 @@ $username = $_SESSION['username'];
       }
       .card i {
         font-size: 20px;
-        border-radius: 100%;
+        border-radius: 20%;
         color: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
         width: 40px;
         height: 40px;
-        align-self: center;
+        top: 12px;
         right: 12px;
         position: absolute;
       }
+      #card-label {
+        bottom: 12px;
+        /* align-self: flex-end;
+        background-color: red; */
+        position: absolute;
+      }
+      
       .card span {
         color: #555;
         font-size: 16px;
@@ -138,21 +165,27 @@ $username = $_SESSION['username'];
       }
       .cards-container {
         padding: 8px;
-        gap: 8px;
+        gap: var(--grid-gap);
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      .card-value {
+        font-size: 40px !important;
+        /* background-color: red; */
       }
       .tasks-label {
         padding: 20px 10px 5px 10px;
       }
       .tasks-container {
-        gap: 8px;
+        gap: var(--grid-gap);
         padding: 8px;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       }
       .task {
-        height: 120px;
+        border: var(--border);
+        white-space: pre-line;
+        height: 190px;
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -162,7 +195,8 @@ $username = $_SESSION['username'];
         background-color: #fff;
         position: relative;
       }
-      .task i {
+      .task:hover {
+        transform: scale(1.01) translateZ(0);
       }
       .task-name {
         padding-left: 20px;
@@ -309,7 +343,7 @@ $username = $_SESSION['username'];
       }
       #no-tasks {
         margin: 8px auto;
-        padding: 12px;
+        padding: 40px 12px;
         border-radius: var(--border-radius);
         /* background-color: #e6e6e6ff; */
         /* background-color: #000; */
@@ -378,8 +412,8 @@ $username = $_SESSION['username'];
         <div class="card blue">
           <div class="information">
             <h3>Total</h3>
-            <p class="total_tasks">0</p>
-            <span
+            <p class="total_tasks card-value">0</p>
+            <span id="card-label"
               >você tem um total de
               <span class="total_tasks">0</span> tarefas</span
             >
@@ -389,16 +423,16 @@ $username = $_SESSION['username'];
         <div class="card green">
           <div class="information">
             <h3>Concluídas</h3>
-            <p class="done_tasks">0</p>
-            <span>você concluiu <span class="done_tasks">0</span> tarefas</span>
+            <p class="done_tasks card-value">0</p>
+            <span id="card-label">você concluiu <span class="done_tasks">0</span> tarefas</span>
           </div>
           <i class="fa-solid fa-check-circle"></i>
         </div>
         <div class="card orange">
           <div class="information">
             <h3>Pendentes</h3>
-            <p class="undone_tasks">0</p>
-            <span
+            <p class="undone_tasks card-value">0</p>
+            <span id="card-label"
               >você tem <span class="undone_tasks">0</span> tarefas
               pendentes</span
             >
@@ -469,7 +503,7 @@ $username = $_SESSION['username'];
       };
 
       document
-        .getElementById("create-form")
+        .getElementById("task-name")
         .addEventListener("keydown", function (event) {
           if (event.key === "Enter") {
             event.preventDefault();
@@ -490,8 +524,19 @@ $username = $_SESSION['username'];
           document.getElementById("task-description").value;
         const status = "UNDONE";
 
-        fetch(
-          `api/create_task.php?task_name=${task_name}&task_description=${task_description}`
+        await fetch(
+          `api/create_task.php`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "Content-Type: application/json"
+            },
+            body: JSON.stringify({
+              task_name,
+              task_description,
+              status: 'UNDONE'
+            })
+          }
         );
         taskFormContainer.style.left = "-120vw";
       };
