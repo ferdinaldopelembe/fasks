@@ -67,8 +67,8 @@ function loginUser ($username, $password) {
 function getDoneTasks ($username) {
   $conn = (new Database())->getConnection();
   $query = $conn->prepare('SELECT tasks.id, tasks.name, tasks.description, tasks.status from tasks
-  INNER JOIN users ON (SELECT id FROM users WHERE username = ?) = tasks.user_id
-    WHERE tasks.status = "DONE" ');
+  INNER JOIN users ON users.id = tasks.user_id
+    WHERE tasks.status = "DONE" AND username = ? ');
   $query->bind_param('s', $username);
   if ($query->execute()) {
     $result = $query->get_result();
@@ -81,8 +81,8 @@ function getDoneTasks ($username) {
 function getUndoneTasks ($username) {
   $conn = (new Database())->getConnection();
   $query = $conn->prepare('SELECT tasks.id, tasks.name, tasks.description, tasks.status from tasks
-  INNER JOIN users ON (SELECT id FROM users WHERE username = ?) = tasks.user_id
-    WHERE tasks.status = "UNDONE" ');
+  INNER JOIN users ON users.id = tasks.user_id
+    WHERE tasks.status = "UNDONE" AND username = ? ');
   $query->bind_param('s', $username);
   if ($query->execute()) {
     $result = $query->get_result();
@@ -95,7 +95,7 @@ function getUndoneTasks ($username) {
 function getTotalTasks ($username) {
   $conn = (new Database())->getConnection();
   $query = $conn->prepare('SELECT tasks.id, tasks.name, tasks.description, tasks.status from tasks
-  INNER JOIN users ON (SELECT id FROM users WHERE username = ?) = tasks.user_id;');
+  INNER JOIN users ON users.id = tasks.user_id WHERE username = ?;');
   $query->bind_param('s', $username);
   if ($query->execute()) {
     $result = $query->get_result();
