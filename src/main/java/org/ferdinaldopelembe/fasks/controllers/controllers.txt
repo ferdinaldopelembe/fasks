@@ -1,0 +1,8 @@
+    /*
+    ✔   1. Get all users (for API tests)   "/users"            GET
+    ✔   2. Get a specific user by token    "/users/me"         GET
+    ✔   3. Login user                      "/auth/signin"      POST
+    ✔   4. Create user                     "/auth/signup"      POST
+        5. Update user                     "/users/me"         PUT
+        6. Delete user                     "/users/me"         DELETE
+    */
