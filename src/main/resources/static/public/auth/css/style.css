@@ -1,0 +1,110 @@
+:root {
+    --primary-color: rebeccapurple;
+    --hover-color: #4b3166;
+    --element-transition: all .8s ease;
+    --white: #fff;
+    --light-gray: #dddddd;
+    --border-gray: #979595;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    background-color: var(--light-gray);
+}
+
+.form {
+    min-width: 400px;
+    display: grid;
+    gap: 1.3rem;
+    background-color: var(--white);
+    padding: 4rem 2.5rem;
+    box-shadow: 0px 5px 10px #000000a1;
+    border-radius: 4px;
+    transition: var(--element-transition)
+}
+
+.form input,
+.form button {
+    padding: 8px;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: 1px solid var(--border-gray);
+    border-radius: 2px;
+    transition: var(--element-transition);
+}
+
+.form input:focus-within {
+    border: 1px solid var(--primary-color);
+    box-shadow: 0px 0px 4px var(--hover-color);
+}
+
+.form h2,
+.form button {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.form h2 {
+    font-size: 32px;
+    /* padding-bottom: 16px; */
+    color: var(--primary-color);
+}
+
+.form button {
+    cursor: pointer;
+    color: var(--white);
+    background-color: var(--primary-color);
+    font-weight: 600;
+}
+
+.form button:hover {
+    background-color: var(--hover-color);
+}
+
+.email-container,
+.password-container {
+    display: flex;
+}
+
+.form label {
+    position: absolute;
+    transform: translate(6px, -8px);
+    background-color: #fff;
+    font-size: 12px;
+    padding: 2px;
+    position: absolute;
+}
+
+.signup-text {
+    font-size: 13px;
+    text-align: center;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-error {
+    font-size: 12px;
+    color: red;
+    display: block;
+    transition: all .2s ease-in-out;
+    opacity: 0;
+    height: 0;
+}
+
+.input-error-visible {
+    height: 10px;
+    opacity: 1;
+}

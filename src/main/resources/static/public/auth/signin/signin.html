@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./../css/style.css">
+    <link rel="stylesheet" href="./../../../assets/fontawesome/css/all.css">
+    <script defer src="./js/signin.js" type="module"></script>
+</head>
+<body>
+    <form class="form" id="form">
+        <h2>login</h2>
+        <div class="input-container email-container">
+            <label for="email">Email</label>
+            <input required class="email" id="email" type="text">
+            <p class="input-error" id="email-error">Este email já foi usado</p>
+        </div>
+        <div class="input-container password-container">
+            <label for="password">Password</label>
+            <input required class="password" id="password" type="text">
+            <p class="input-error" id="password-error">Palavra passe incorreta</p>
+        </div>
+        <button id="signin-button" type="submit">login</button>
+        <p class="signup-text" id="signup-text">Don't have an account yet? <a href="./../signup/signup.html">register</a></p>
+    </form>
+</body>
+</html>

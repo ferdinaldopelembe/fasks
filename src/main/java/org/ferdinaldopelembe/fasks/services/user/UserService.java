@@ -28,6 +28,14 @@ public class UserService {
         return Optional.of(userRepository.findAll());
     }
 
+    public Boolean isValidEmail(String email) {
+        return email.matches("^[a-z_][a-z\\._\\d]*@[a-z][a-z\\._\\d]*$");
+    }
+
+    public Boolean existsByEmail (String email) {
+        return userRepository.existsByEmail(email);
+    }
+
     public Optional<UserResponse> getCurrentUser(@AuthenticationPrincipal User user) {
         return Optional.of(
             new UserResponse(

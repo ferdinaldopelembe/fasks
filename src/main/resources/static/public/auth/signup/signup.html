@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./../css/style.css">
+    <link rel="stylesheet" href="./../../../assets/fontawesome/css/all.css">
+    <script defer src="./js/signup.js" type="module"></script>
+</head>
+<body>
+    <form class="form" id="form">
+        <h2>register</h2>
+        <div class="input-container email-container">
+            <label for="email">Name</label>
+            <input required class="name" id="name" type="text">
+            <p class="input-error" id="name-error"></p>
+        </div>
+        <div class="input-container email-container">
+            <label for="email">Email</label>
+            <input required class="email" id="email" type="text">
+            <p class="input-error" id="email-error"></p>
+        </div>
+        <div class="input-container password-container">
+            <label for="password">Password</label>
+            <input required class="password" id="password" type="password">
+            <p class="input-error" id="password-error"></p>
+        </div>
+        <div class="input-container password-container">
+            <label for="password">Confirm password</label>
+            <input required class="password" id="confirm-password" type="password">
+            <p class="input-error" id="confirm-password-error"></p>
+        </div>
+        <button id="signin-button" type="submit">register</button>
+        <p class="signup-text" id="signup-text">Already have an account yet? <a href="./../signin/signin.html">login</a></p>
+    </form>
+</body>
+</html>

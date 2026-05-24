@@ -7,6 +7,7 @@ import org.ferdinaldopelembe.fasks.dtos.SignUpResponse;
 import org.ferdinaldopelembe.fasks.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,13 +25,21 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<SignInResponse> signInUser(@RequestBody SignInRequest signInRequest) {
-        return userService.signInUser(signInRequest)
-            .map(ResponseEntity::ok)
-            .orElse(ResponseEntity.notFound().build());
+        if (!userService.isValidEmail(signInRequest.getEmail())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return userService.existsByEmail(signInRequest.getEmail()) ?
+            userService.signInUser(signInRequest)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build()) :
+            ResponseEntity.notFound().build();
     }
 
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponse> signUpUser(@RequestBody SignUpRequest signUpRequest) {
+        if (!userService.isValidEmail(signUpRequest.getEmail())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
         return userService.signUpUser(signUpRequest)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
