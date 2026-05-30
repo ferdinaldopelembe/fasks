@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fasks Home</title>
+        <!-- FontAwesome -->
+        <link rel="stylesheet" href="./../../assets/fontawesome/css/all.css" />
+        <!-- Style -->
+        <link rel="stylesheet" href="./css/style.css" />
+        <!-- Script -->
+        <script defer type="module" src="./js/script.js"></script>
+    </head>
+    <body>
+        <div id="side-menu" class="side-menu-compact">
+            <div class="logo">
+                <span class="logo-text">FA</span>
+                <div class="app-description hidden">
+                    <b>Fasks</b>
+                    <p>Make it ease</p>
+                </div>
+            </div>
+            <button class="toggle-menu">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="menu-buttons">
+                <button class="menu-button selected" destination="home">
+                    <i class="fa-regular fa-home"></i>
+                    <span class="menu-button-title hidden">Home</span>
+                </button>
+                <button class="menu-button" destination="completed">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span class="menu-button-title hidden">Completed</span>
+                </button>
+                <button class="menu-button" destination="trash">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <span class="menu-button-title hidden">Trash</span>
+                </button>
+            </div>
+        </div>
+        <div id="home" class="page">
+            <h2>Page Home</h2>
+        </div>
+        <div id="completed" class="page hidden">
+            <h2>Page Completed</h2>
+        </div>
+        <div id="trash" class="page hidden">
+            <h2>Page Trash</h2>
+        </div>
+    </body>
+</html>

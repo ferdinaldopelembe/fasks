@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('./../../../assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+}
+
+:root {
+    --menu-padding: 16px;
+    --menu-gap: 12px;
+    --ligh-gray: #cecece;
+    --white: #fff;
+    --primary: royalblue;
+    --transition: all .3s ease-in;
+    --radius: 6px;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+.logo {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.logo-text {
+    /* flex: .5; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+    min-width: 40px;
+    min-height: 40px;
+
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--white);
+    text-transform: uppercase;
+    font-family: 'Trebuchet MS';
+    border-radius: var(--radius);
+}
+
+.app-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    /* align-items: end; */
+    font-size: 10pt;
+}
+
+.app-description p,
+.app-description b {
+    height: 11pt;
+    /* background-color: #000; */
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius);
+}
+
+body {
+    background-color: var(--ligh-gray);
+    display: flex;
+    flex-direction: row;
+    min-height: 100dvh;
+    transition: var(--transition);
+}
+
+.side-menu {
+    position: relative;
+    padding: 24px var(--menu-padding);
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: var(--menu-gap);
+    transition: var(--transition);
+    width: 180px;
+}
+
+.side-menu-compact {
+    /* align-items: center; */
+    position: relative;
+    padding: 24px var(--menu-padding);
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: var(--menu-gap);
+    transition: var(--transition);
+    width: 72px;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--menu-gap);
+    transition: var(--transition);
+    /* background-color: #000; */
+}
+
+.menu-buttons button {
+    overflow: hidden;
+    height: 40px;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 16px;
+    text-align: left;
+    transition: var(--transition);
+    border-radius: var(--radius);
+    background-color: var(--white);
+}
+
+.menu-buttons button:hover {
+    background-color: var(--ligh-gray);
+}
+
+.menu-buttons button span {
+    font-size: 14px;
+}
+
+.toggle-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary);
+    color: var(--white);
+    border: solid 2px var(--white);
+    position: absolute;
+    right: 0;
+    transform: translateX(50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    transition: var(--transition);
+}
+
+.selected,
+.selected:hover {
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
+}
+.hidden { display: none !important; }

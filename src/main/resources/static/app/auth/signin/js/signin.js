@@ -51,7 +51,8 @@ async function signInUser() {
 
 function prepareUser(signInResponse) {
     localStorage.setItem('token',signInResponse.token);
-    alert(`Welcome, ${signInResponse.name}`);
+    // alert(`Welcome, ${signInResponse.name}`);
+    window.location.href = './../../home/index.html';
 }
 
 function showElement(element) {

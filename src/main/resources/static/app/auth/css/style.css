@@ -48,6 +48,10 @@ body {
     box-shadow: 0px 0px 4px var(--hover-color);
 }
 
+.form input {
+    cursor: text;
+}
+
 .form h2,
 .form button {
     text-align: center;
