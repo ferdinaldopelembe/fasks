@@ -24,7 +24,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
     margin-bottom: 12px;
     overflow: hidden;
 }
@@ -35,9 +35,8 @@
     justify-content: center;
     align-items: center;
     background-color: var(--primary);
-    min-width: 40px;
-    min-height: 40px;
-
+    min-width: 45px;
+    min-height: 45px;
     font-weight: bold;
     font-size: 18px;
     color: var(--white);
@@ -82,11 +81,12 @@ body {
     flex-direction: column;
     gap: var(--menu-gap);
     transition: var(--transition);
-    width: 180px;
+    width: 240px;
 }
 
 .side-menu-compact {
-    /* align-items: center; */
+    justify-content: start;
+    align-items: flex-start;
     position: relative;
     padding: 24px var(--menu-padding);
     background-color: var(--white);
@@ -94,7 +94,24 @@ body {
     flex-direction: column;
     gap: var(--menu-gap);
     transition: var(--transition);
-    width: 72px;
+    width: 78px;
+    .menu-buttons button {
+        position: relative;
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
+        min-width: 45px;
+        height: 45px;
+    }
+    .menu-buttons button i {
+        transform: translateX(2.6px);
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .menu-buttons {
@@ -106,8 +123,14 @@ body {
 }
 
 .menu-buttons button {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: start; */
+    display: grid;
+    grid-template-columns: 20% 80%;
+    align-items: center;
     overflow: hidden;
-    height: 40px;
+    height: 45px;
     width: 100%;
     padding: 8px 10px;
     font-size: 16px;
@@ -122,8 +145,16 @@ body {
 }
 
 .menu-buttons button span {
-    font-size: 14px;
+    /* margin-top: 2.5px; */
+    font-size: 13.5px;
+    /* background-color: #000; */
+    font-family: 'Poppins';
 }
+
+/* .menu-buttons button i {
+    z-index: 10;
+    background-color: var(--primary);
+} */
 
 .toggle-menu {
     display: flex;
@@ -134,9 +165,9 @@ body {
     border: solid 2px var(--white);
     position: absolute;
     right: 0;
-    transform: translateX(50%);
-    width: 30px;
-    height: 30px;
+    transform: translate(50%,6px);
+    width: 25px;
+    height: 25px;
     border-radius: 100%;
     transition: var(--transition);
 }
@@ -146,4 +177,97 @@ body {
     background-color: var(--primary) !important;
     color: var(--white) !important;
 }
-.hidden { display: none !important; }
+.hidden {
+    display: none !important;
+}
+
+
+
+/* 
+
+PAGES STYLES
+
+*/
+
+.page {
+    padding: 16px 32px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 32px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.proffile {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-color: var(--white);
+    border-radius: 100%;
+    border: 2px solid var(--primary);
+    display: grid;
+    place-items: center;
+}
+
+.proffile i {
+    font-size: 12pt;
+    color: var(--primary);
+    transform: translateY(-1.5px);
+}
+
+.task {
+    display: flex;
+    background-color: var(--white);
+    flex-direction: column;
+    padding: var(--menu-padding);
+    border-radius: var(--radius);
+    gap: 8px;
+}
+
+.task-description {
+    width: 100%;
+    /* background: red; */
+    font-size: 11pt;
+    /* white-space: normal; */
+    text-align: justify;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.task-actions button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    color: #fff;
+}
+
+.edit {
+    background-color: orange;
+}
+
+.complete {
+    background-color: green;
+}
+
+.delete {
+    background-color: red;
+}
+
+.tasks-container {
+    gap: 12px;
+    /* background-color: #000; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}

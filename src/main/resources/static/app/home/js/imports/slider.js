@@ -18,6 +18,7 @@ function toggleMenu() {
     const compact = !menu.classList.contains('side-menu-compact');
     const appDescription = document.querySelector('.app-description');
     const menuButtonTitles = document.querySelectorAll('.menu-button-title');
+    const icon = document.querySelector('.toggle-menu-icon');
 
     if (compact) {
         appDescription.classList.add('hidden');
@@ -26,6 +27,8 @@ function toggleMenu() {
         });
         menu.classList.remove('side-menu');
         menu.classList.add('side-menu-compact');
+        icon.classList.remove('fa-chevron-left');
+        icon.classList.add('fa-chevron-right');
     } else {
         appDescription.classList.remove('hidden');
         menuButtonTitles.forEach(title => {
@@ -33,6 +36,8 @@ function toggleMenu() {
         });
         menu.classList.remove('side-menu-compact');
         menu.classList.add('side-menu');
+        icon.classList.remove('fa-chevron-right');
+        icon.classList.add('fa-chevron-left');
     }
 }
 
@@ -44,7 +49,6 @@ function showPage(button) {
         page.classList.add('hidden');
         button.classList.remove('selected');
     });
-
     selectedPage.classList.remove('hidden');
     button.classList.add('selected');
 }
