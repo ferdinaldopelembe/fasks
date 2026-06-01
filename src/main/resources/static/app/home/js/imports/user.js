@@ -1,3 +1,15 @@
+export function initProffileAction() {
+    const proffile = document.querySelector('.proffile');
+    proffile.onclick = () => {
+        const name = localStorage.getItem('name');
+        if (confirm(`${name}, are you sure you want to logout?`)) {
+            localStorage.setItem('token','');
+            localStorage.setItem('name', '');
+            window.location.href = './../auth/signin/signin.html';
+        }
+    }
+}
+
 export async function getUserData() {
     const API_URL = 'http://localhost:8080/users/me';
     const token = localStorage.getItem('token');
@@ -14,13 +26,14 @@ export async function getUserData() {
 
         if (response.ok) {
             const user = await response.json();
+            localStorage.setItem('name', user.name);
             return user;
         } else {
             return null;
         }
 
     } catch(error) {
-        alert(error);
+        console.log(`Error while geting user data: ${error}`);
         return null;
     }
 

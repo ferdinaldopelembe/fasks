@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaskResponse {
+public class TaskUpdateRequest {
     private Long id;
     private String title;
     private String description;

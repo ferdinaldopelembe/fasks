@@ -8,9 +8,13 @@
     --menu-gap: 12px;
     --ligh-gray: #cecece;
     --white: #fff;
-    --primary: royalblue;
-    --transition: all .3s ease-in;
-    --radius: 6px;
+    --primary: #4151e1;
+    --transition: all .3s ease-in-out;
+    --radius: 4px;
+    --hover-color: #152e79;
+    --element-transition: all .3s ease;
+    --light-gray: #dddddd;
+    --border-gray: #979595;
 }
 
 * {
@@ -66,6 +70,7 @@ button {
 }
 
 body {
+    overflow: hidden;
     background-color: var(--ligh-gray);
     display: flex;
     flex-direction: row;
@@ -157,6 +162,7 @@ body {
 } */
 
 .toggle-menu {
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -190,11 +196,12 @@ PAGES STYLES
 */
 
 .page {
+    position: relative;
     padding: 16px 32px;
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 32px;
+    gap: 16px;
 }
 
 .page-header {
@@ -206,68 +213,262 @@ PAGES STYLES
 
 .proffile {
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background-color: var(--white);
-    border-radius: 100%;
-    border: 2px solid var(--primary);
+    border-radius: var(--radius);
+    /* border: 2px solid var(--primary); */
     display: grid;
     place-items: center;
 }
 
 .proffile i {
     font-size: 12pt;
-    color: var(--primary);
+    color: red;
     transform: translateY(-1.5px);
 }
 
 .task {
+    box-shadow: 0px 2px 2px #0000006b;
+    position: relative;
     display: flex;
     background-color: var(--white);
     flex-direction: column;
     padding: var(--menu-padding);
     border-radius: var(--radius);
     gap: 8px;
+    /* height: fit-content; */
+    height: 160px;
+    border: 1px #fff solid;
+    transition: var(--transition);
+    border-left: 2.5px solid #ff8800;
+}
+
+.completed {
+    border-left: 2.5px solid green;
+    /* background: linear-gradient(to bottom, #fff 60%, #00da0042) !important; */
 }
 
 .task-description {
     width: 100%;
     /* background: red; */
-    font-size: 11pt;
+    font-size: 15px;
     /* white-space: normal; */
-    text-align: justify;
+    /* text-align: justify; */
+    height: 200px;
+    overflow: hidden;
 }
 
 .task-actions {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    /* background-color: red; */
     display: flex;
-    gap: 8px;
+    flex-direction: row;
+    /* justify-content: end; */
+    gap: 4px;
+    opacity: 85%;
+    padding: 4px;
+    background-color: transparent;
+    border-radius: var(--radius);
 }
 
 .task-actions button {
+    font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     border-radius: 100%;
-    color: #fff;
+    background-color: transparent;
+    border: 2px solid #fff;
+    /* color: #fff; */
 }
 
 .edit {
-    background-color: orange;
+    color: #db6f0a;
 }
 
 .complete {
-    background-color: green;
+    color: green;
 }
 
 .delete {
-    background-color: red;
+    color: red;
 }
 
+.completed-tasks-container,
 .tasks-container {
+    -ms-overflow-style: none;
+    scrollbar-width: 0;
+    border-radius: var(--radius);
+    align-content: start;
+    height: 82vh;
+    overflow: auto;
+    /* background-color: #000; */
+    /* flex: 1; */
     gap: 12px;
     /* background-color: #000; */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.completed-tasks-container::-webkit-scrollbar,
+.tasks-container::-webkit-scrollbar {
+    display: none;
+}
+
+.create-task {
+    position: absolute;
+    left: 32px;
+    bottom: 32px;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: var(--primary);
+    color: var(--white);
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    box-shadow: 0px 0px 15px #000;
+    transition: var(--transition);
+}
+
+.create-task:hover,
+.task:hover {
+    cursor: pointer;
+    scale: 1.03;
+}
+
+/* FORM create style */
+
+
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    display: grid;
+    gap: 1.3rem;
+    background-color: var(--white);
+    padding: 2rem;
+    box-shadow: 0px 5px 10px #000000a1;
+    border-radius: 4px;
+    transition: var(--element-transition)
+}
+
+.form input,
+.form button {
+    padding: 8px;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: 1px solid var(--border-gray);
+    border-radius: 2px;
+    transition: var(--element-transition);
+}
+
+.description {
+    outline: none;
+    border: 1px solid var(--border-gray);
+    transition: var(--element-transition);
+    border-radius: 2px;
+    text-align: left;
+    resize: none;
+    height: 200px;
+    padding: 8px;
+}
+
+.form input:focus-within,
+.description:focus-within {
+    border: 1px solid var(--primary);
+    box-shadow: 0px 0px 4px var(--hover-color);
+}
+
+.form input {
+    cursor: text;
+}
+
+.form h2,
+.form button {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.form h2 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI';
+    font-weight: bold;
+    font-size: 28px;
+    /* padding-bottom: 16px; */
+    color: var(--primary);
+}
+
+#create-button {
+    cursor: pointer;
+    color: var(--white);
+    background-color: var(--primary) !important;
+    font-weight: 600;
+}
+
+#create-button:hover {
+    background-color: var(--hover-color) !important;
+}
+
+.email-container,
+.password-container {
+    display: flex;
+}
+
+.form label {
+    position: absolute;
+    transform: translate(6px, -8px);
+    background-color: #fff;
+    font-size: 12px;
+    padding: 2px;
+    position: absolute;
+}
+
+.signup-text {
+    font-size: 13px;
+    text-align: center;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-task-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #4a7d9b54;
+    backdrop-filter: blur(4px);
+    z-index: 5;
+}
+
+.description {
+    text-align: left;
+    resize: none;
+    height: 200px;
+}
+
+.close-form-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-40%,40%);
+    max-width: 10px;
+    max-height: 10px;
+    background-color: #ff00007c;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px !important;
+    border: none !important;
 }

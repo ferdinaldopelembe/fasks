@@ -32,91 +32,89 @@
                     <i class="fa-regular fa-circle-check"></i>
                     <span class="menu-button-title hidden">Completed</span>
                 </button>
-                <button class="menu-button" destination="trash">
+                <!-- <button class="menu-button" destination="trash">
                     <i class="fa-regular fa-trash-can"></i>
                     <span class="menu-button-title hidden">Trash</span>
-                </button>
+                </button> -->
             </div>
         </div>
         <div id="home" class="page">
             <header class="page-header">
-                <h2>Home</h2>
+                <h2>All Tasks</h2>
+                <div class="proffile" title="logout">
+                    <i class="fa fa-sign-out"></i>
+                </div>
+            </header>
+            <!-- Tassks -->
+            <div class="tasks-container">
+                <!-- 
+                <div class="task completed">
+                    <h3 class="task-title">Título da tarefa</h3>
+                    <p class="task-description">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing
+                        elit. Esse, laboriosam ut veniam sint perferendis, fuga
+                        in provident facilis nemo natus illo quod explicabo
+                        minus reprehenderit quaerat inventore voluptatem placeat
+                        corporis.
+                    </p>
+                    <div class="task-actions">
+                        <button class="edit">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="complete">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </button>
+                        <button class="delete">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                -->
+            </div>
+            <!-- Create Button -->
+            <button class="create-task">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+            <!-- Create Task Form -->
+            <div class="create-task-form hidden">
+                <form class="form" id="form">
+                    <h2>Create Task</h2>
+                    <div class="input-container">
+                        <label for="title">Title</label>
+                        <input required class="title" id="title" type="text" />
+                        <!-- <p class="input-error" id="title-error">
+                            Este título já foi usado
+                        </p> -->
+                    </div>
+                    <div class="input-container">
+                        <label for="description">Desciption</label>
+                        <textarea
+                            required
+                            class="description"
+                            id="description"
+                        ></textarea>
+                        <!-- <p class="input-error" id="password-error">
+                            Palavra passe incorreta
+                        </p> -->
+                    </div>
+                    <button id="create-button" type="submit">create</button>
+                    <!-- <button class="close-form-button"></button> -->
+                </form>
+            </div>
+        </div>
+        <div id="completed" class="page hidden">
+            <header class="page-header">
+                <h2>Completed Tasks</h2>
                 <div class="proffile">
                     <i class="fa-solid fa-user"></i>
                 </div>
             </header>
             <!-- Tassks -->
-            <div class="tasks-container">
-                <div class="task">
-                    <h3 class="task-title">Título da tarefa</h3>
-                    <p class="task-description">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Esse, laboriosam ut veniam sint perferendis, fuga
-                        in provident facilis nemo natus illo quod explicabo
-                        minus reprehenderit quaerat inventore voluptatem placeat
-                        corporis.
-                    </p>
-                    <div class="task-actions">
-                        <button class="edit">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button class="complete">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </button>
-                        <button class="delete">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="task">
-                    <h3 class="task-title">Título da tarefa</h3>
-                    <p class="task-description">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Esse, laboriosam ut veniam sint perferendis, fuga
-                        in provident facilis nemo natus illo quod explicabo
-                        minus reprehenderit quaerat inventore voluptatem placeat
-                        corporis.
-                    </p>
-                    <div class="task-actions">
-                        <button class="edit">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button class="complete">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </button>
-                        <button class="delete">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="task">
-                    <h3 class="task-title">Título da tarefa</h3>
-                    <p class="task-description">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Esse, laboriosam ut veniam sint perferendis, fuga
-                        in provident facilis nemo natus illo quod explicabo
-                        minus reprehenderit quaerat inventore voluptatem placeat
-                        corporis.
-                    </p>
-                    <div class="task-actions">
-                        <button class="edit">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button class="complete">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </button>
-                        <button class="delete">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <div class="completed-tasks-container"></div>
         </div>
-        <div id="completed" class="page hidden">
-            <h2>Completed</h2>
-        </div>
-        <div id="trash" class="page hidden">
+        <!-- <div id="trash" class="page hidden">
             <h2>Trash</h2>
-        </div>
+        </div> -->
     </body>
 </html>

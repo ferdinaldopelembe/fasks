@@ -9,11 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaskResponse {
-    private Long id;
+public class TaskRequest {
     private String title;
     private String description;
-    private Long userId;
-    private LocalDateTime createdAt;
-    private Boolean completed;
 }
