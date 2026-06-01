@@ -1,13 +1,15 @@
 export function initProffileAction() {
-    const proffile = document.querySelector('.proffile');
-    proffile.onclick = () => {
-        const name = localStorage.getItem('name');
-        if (confirm(`${name}, are you sure you want to logout?`)) {
-            localStorage.setItem('token','');
-            localStorage.setItem('name', '');
-            window.location.href = './../auth/signin/signin.html';
+    const proffiles = document.querySelectorAll('.proffile');
+    proffiles.forEach(proffile => {
+        proffile.onclick = () => {
+            const name = localStorage.getItem('name');
+            if (confirm(`${name}, are you sure you want to logout?`)) {
+                localStorage.setItem('token','');
+                localStorage.setItem('name', '');
+                window.location.href = './../auth/signin/signin.html';
+            }
         }
-    }
+    })
 }
 
 export async function getUserData() {

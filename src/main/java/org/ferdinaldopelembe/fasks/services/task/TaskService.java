@@ -18,73 +18,83 @@ import org.springframework.stereotype.Service;
 @Service
 public class TaskService {
 
-        @Autowired
-        TaskRepository taskRepository;
+    @Autowired
+    TaskRepository taskRepository;
 
-        @Autowired
-        UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
-        public Optional<List<TaskResponse>> getUserTasks(@AuthenticationPrincipal User user) {
-                return taskRepository
-                                .findByUserId(user.getId())
-                                .map(tasks -> tasks
-                                                .stream()
-                                                .map(task -> new TaskResponse(
-                                                                task.getId(),
-                                                                task.getTitle(),
-                                                                task.getDescription(),
-                                                                task.getUser().getId(),
-                                                                task.getCreatedAt(),
-                                                                task.getCompleted()))
-                                                .toList());
+    public Optional<List<TaskResponse>> getUserTasks(@AuthenticationPrincipal User user) {
+        return taskRepository
+            .findByUserId(user.getId())
+            .map(tasks -> tasks
+                .stream()
+                .map(task -> new TaskResponse(
+                    task.getId(),
+                    task.getTitle(),
+                    task.getDescription(),
+                    task.getUser().getId(),
+                    task.getCreatedAt(),
+                    task.getCompleted())
+                )
+                .toList()
+            );
+    }
+
+    public Optional<TaskResponse> createTask(TaskRequest taskRequest, @AuthenticationPrincipal User user) {
+        Task createdTask = new Task(
+            null,
+            user,
+            taskRequest.getTitle(),
+            taskRequest.getDescription(),
+            false,
+            LocalDateTime.now()
+        );
+
+        createdTask = taskRepository.save(createdTask);
+
+        return Optional.of(
+            new TaskResponse(
+                createdTask.getId(),
+                createdTask.getTitle(),
+                createdTask.getDescription(),
+                user.getId(),
+                createdTask.getCreatedAt(),
+                createdTask.getCompleted()
+            )
+        );
+    }
+
+    public Optional<TaskResponse> updateTask(TaskUpdateRequest task) {
+
+        if (taskRepository.findById(task.getId()).isEmpty()) {
+            return Optional.empty();
         }
 
-        public Optional<TaskResponse> createTask(TaskRequest taskRequest, @AuthenticationPrincipal User user) {
-                Task createdTask = new Task(
-                                null,
-                                user,
-                                taskRequest.getTitle(),
-                                taskRequest.getDescription(),
-                                false,
-                                LocalDateTime.now());
-                createdTask = taskRepository.save(createdTask);
-                return Optional.of(
-                                new TaskResponse(
-                                                createdTask.getId(),
-                                                createdTask.getTitle(),
-                                                createdTask.getDescription(),
-                                                user.getId(),
-                                                createdTask.getCreatedAt(),
-                                                createdTask.getCompleted()));
+        var userOptional = userRepository.findById(task.getUserId());
+        if (userOptional.isEmpty()) {
+            return Optional.empty();
         }
 
-        public Optional<TaskResponse> updateTask(TaskUpdateRequest task) {
+        taskRepository.save(new Task(
+            task.getId(),
+            userOptional.get(),
+            task.getTitle(),
+            task.getDescription(),
+            task.getCompleted(),
+            task.getCreatedAt()
+        ));
 
-                if (taskRepository.findById(task.getId()).isEmpty()) {
-                        return Optional.empty();
-                }
-
-                var userOptional = userRepository.findById(task.getUserId());
-                if (userOptional.isEmpty()) {
-                        return Optional.empty();
-                }
-
-                taskRepository.save(new Task(
-                                task.getId(),
-                                userOptional.get(),
-                                task.getTitle(),
-                                task.getDescription(),
-                                task.getCompleted(),
-                                task.getCreatedAt()));
-
-                return Optional.of(
-                                new TaskResponse(
-                                                task.getId(),
-                                                task.getTitle(),
-                                                task.getDescription(),
-                                                task.getUserId(),
-                                                task.getCreatedAt(),
-                                                task.getCompleted()));
-        }
+        return Optional.of(
+            new TaskResponse(
+                task.getId(),
+                task.getTitle(),
+                task.getDescription(),
+                task.getUserId(),
+                task.getCreatedAt(),
+                task.getCompleted()
+            )
+        );
+    }
 
 }
