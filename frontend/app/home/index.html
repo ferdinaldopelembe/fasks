@@ -12,6 +12,18 @@
         <script defer type="module" src="./js/script.js"></script>
     </head>
     <body>
+        <script type="module">
+            import {
+                handleUserAuthenctication,
+                isUserAuthenticated
+            } from "./js/imports/auth.js";
+
+            if (!(await isUserAuthenticated())) {
+                handleUserAuthenctication();
+            } else {
+                document.body.style.display = 'flex';
+            }
+        </script>
         <div id="side-menu" class="side-menu-compact">
             <div class="logo">
                 <span class="logo-text">FA</span>

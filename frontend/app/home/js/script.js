@@ -6,14 +6,12 @@ import { initProffileAction } from "./imports/user.js";
 
 async function setUpApplication() {
     initPageSlider();
-    console.log(await isUserAuthenticated());
-    if (await isUserAuthenticated()) {
-        initProffileAction();
-        loadHomeUserTasks();
-        loadCompletedUserTasks();
-    } else {
-        handleUserAuthenctication();
-    }
+
+    console.log(await isUserAuthenticated() ? 'user authenticated' : 'no user authenticated');
+
+    initProffileAction();
+    loadHomeUserTasks();
+    loadCompletedUserTasks();
 }
 
 setUpApplication();

@@ -72,7 +72,7 @@ button {
 body {
     overflow: hidden;
     background-color: var(--ligh-gray);
-    display: flex;
+    display: none;
     flex-direction: row;
     min-height: 100dvh;
     transition: var(--transition);
