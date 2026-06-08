@@ -1,6 +1,7 @@
 const showFormButton = document.querySelector('.create-task');
 const form = document.querySelector('.form');
 const createTaskButton = document.getElementById('create-button');
+const cancelButton = document.getElementById('cancel-button');
 const taskFormContainer = document.querySelector('.create-task-form');
 const taskTitle = document.getElementById('title');
 const taskDescription = document.getElementById('description');
@@ -8,6 +9,7 @@ const taskDescription = document.getElementById('description');
 const API_URL = 'http://localhost:8080/tasks';
 
 showFormButton.onclick = () => taskFormContainer.classList.remove('hidden');
+cancelButton.onclick = () => taskFormContainer.classList.add('hidden');
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault(); 
@@ -161,21 +163,39 @@ async function completeTask(task) {
     if (response.ok) {
         document.getElementById(`task-${task.id}`).classList.add('completed');
         document.querySelector(`.task-${task.id} .complete`).style.display = 'none';
-        alert(`A tarefa \"${task.title}\" foi completa!`);
+        alert(`The Task \"${task.title}\" was completed!`);
     } else {
-        console.error('Falha ao completar tarefa:', response.status, await response.text());
+        console.error('Error while completing the task:', response.status, await response.text());
     }
 }
 
+function beginLoading() {
+    const loading = document.querySelector('.loading');
+    loading.classList.remove('hidden');
+}
+
+function endLoading() {
+    const loading = document.querySelector('.loading');
+    loading.classList.add('hidden');
+}
+
 export async function loadHomeUserTasks() {
+    
+    beginLoading();
+    
     const tasks = await getUserTasks();
 
     tasks.forEach(task => {
         appendTaskElement(task, 'tasks-container');
     });
+
+    endLoading();
 }
 
 export async function loadCompletedUserTasks() {
+
+    beginLoading();
+
     const tasks = await getUserTasks();
 
     tasks.forEach(task => {
@@ -183,4 +203,6 @@ export async function loadCompletedUserTasks() {
             appendTaskElement(task, 'completed-tasks-container');
         }
     });
+
+    endLoading();
 }

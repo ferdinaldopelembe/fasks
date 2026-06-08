@@ -36,18 +36,14 @@
                 <i class="toggle-menu-icon fa-solid fa-chevron-right"></i>
             </button>
             <div class="menu-buttons">
-                <button class="menu-button selected" destination="home">
+                <button title="Home" class="menu-button selected" destination="home">
                     <i style="margin-top: -1px" class="fa-regular fa-home"></i>
                     <span class="menu-button-title hidden">Home</span>
                 </button>
-                <button class="menu-button" destination="completed">
+                <button title="Completed Tasks" class="menu-button" destination="completed">
                     <i class="fa-regular fa-circle-check"></i>
                     <span class="menu-button-title hidden">Completed</span>
                 </button>
-                <!-- <button class="menu-button" destination="trash">
-                    <i class="fa-regular fa-trash-can"></i>
-                    <span class="menu-button-title hidden">Trash</span>
-                </button> -->
             </div>
         </div>
         <div id="home" class="page">
@@ -57,47 +53,32 @@
                     <i class="fa fa-sign-out"></i>
                 </div>
             </header>
-            <!-- Tassks -->
+            <!-- All Tasks Container -->
             <div class="tasks-container">
-                <!-- 
-                <div class="task completed">
-                    <h3 class="task-title">Título da tarefa</h3>
-                    <p class="task-description">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Esse, laboriosam ut veniam sint perferendis, fuga
-                        in provident facilis nemo natus illo quod explicabo
-                        minus reprehenderit quaerat inventore voluptatem placeat
-                        corporis.
-                    </p>
-                    <div class="task-actions">
-                        <button class="edit">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button class="complete">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </button>
-                        <button class="delete">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
+                <div class="loading">
+                    <p>Carregando Tarefas</p>
+                    <div class="loading-balls">
+                        <span id="ball-1"></span>
+                        <span id="ball-2"></span>
+                        <span id="ball-3"></span>
+                        <!-- <span></span>
+                        <span></span> -->
                     </div>
                 </div>
-                -->
             </div>
-            <!-- Create Button -->
-            <button class="create-task">
+
+            <!-- Cirlce Create Button -->
+            <button title="Add Task" class="create-task">
                 <i class="fa-solid fa-plus"></i>
             </button>
 
             <!-- Create Task Form -->
             <div class="create-task-form hidden">
                 <form class="form" id="form">
-                    <h2>Create Task</h2>
+                    <h2>New Task</h2>
                     <div class="input-container">
                         <label for="title">Title</label>
-                        <input required class="title" id="title" type="text" />
-                        <!-- <p class="input-error" id="title-error">
-                            Este título já foi usado
-                        </p> -->
+                        <input placeholder="eg: go to the gym..." required class="title" id="title" type="text" />
                     </div>
                     <div class="input-container">
                         <label for="description">Desciption</label>
@@ -105,15 +86,17 @@
                             required
                             class="description"
                             id="description"
+                            placeholder="eg: go to the gym at 6:00 PM, don't forget to bring your water bottle and towel..."
                         ></textarea>
-                        <!-- <p class="input-error" id="password-error">
-                            Palavra passe incorreta
-                        </p> -->
                     </div>
-                    <button id="create-button" type="submit">create</button>
+                    <div class="action-buttons">
+                        <button id="create-button" type="submit">create</button>
+                        <button id="cancel-button" type="button">cancel</button>
+                    </div>
                     <!-- <button class="close-form-button"></button> -->
                 </form>
             </div>
+
         </div>
         <div id="completed" class="page hidden">
             <header class="page-header">
@@ -122,11 +105,8 @@
                     <i class="fa fa-sign-out"></i>
                 </div>
             </header>
-            <!-- Tassks -->
+            <!-- Tasks -->
             <div class="completed-tasks-container"></div>
         </div>
-        <!-- <div id="trash" class="page hidden">
-            <h2>Trash</h2>
-        </div> -->
     </body>
 </html>

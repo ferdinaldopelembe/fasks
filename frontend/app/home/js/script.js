@@ -10,6 +10,7 @@ async function setUpApplication() {
     console.log(await isUserAuthenticated() ? 'user authenticated' : 'no user authenticated');
 
     initProffileAction();
+    
     loadHomeUserTasks();
     loadCompletedUserTasks();
 }

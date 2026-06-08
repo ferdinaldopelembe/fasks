@@ -212,20 +212,23 @@ PAGES STYLES
 }
 
 .proffile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    width: 50px;
-    height: 50px;
-    background-color: var(--white);
-    border-radius: var(--radius);
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 100%;
     /* border: 2px solid var(--primary); */
     display: grid;
     place-items: center;
 }
 
 .proffile i {
-    font-size: 12pt;
+    font-size: 10pt;
     color: red;
-    transform: translateY(-1.5px);
+    transform: translateX(2px);
 }
 
 .task {
@@ -339,13 +342,13 @@ PAGES STYLES
 .create-task:hover,
 .task:hover {
     cursor: pointer;
-    scale: 1.03;
+    transform: scale(0.98);
 }
 
 /* FORM create style */
 
-
 .form {
+    z-index: 15;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -406,11 +409,23 @@ PAGES STYLES
     color: var(--primary);
 }
 
-#create-button {
+.action-buttons {
+    display: flex;
+    gap: 4px;
+    flex-direction: row-reverse;
+}
+
+#create-button,
+#cancel-button {
     cursor: pointer;
     color: var(--white);
     background-color: var(--primary) !important;
     font-weight: 600;
+}
+
+#cancel-button {
+    background-color: #ce1b1b !important;
+    /* color: var(--border-gray) !important; */
 }
 
 #create-button:hover {
@@ -471,4 +486,56 @@ PAGES STYLES
     justify-content: center;
     border-radius: 2px !important;
     border: none !important;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: absolute;
+    /* width: 70px;
+    height: 70px; */
+    background-color: transparent;
+    z-index: 8;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    flex-direction: column-reverse;
+}
+
+.loading-balls {
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-balls span {
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary);
+    transition: var(--element-transition);
+}
+
+#ball-1 {
+    animation: loading-animation .6s .2s infinite alternate;
+}
+#ball-2 {
+    animation: loading-animation .6s .4s infinite alternate;
+}
+#ball-3 {
+    animation: loading-animation .6s .6s infinite alternate;
+}
+
+@keyframes loading-animation {
+    0% {
+        scale: 1;
+        border-radius: 0;
+        /* rotate: 0deg; */
+    } 100% {
+        scale: 0.8;
+        border-radius: 100%;
+        /* rotate: 180deg; */
+    }
 }
