@@ -27,25 +27,27 @@ public class TaskController {
     @GetMapping
     public ResponseEntity<List<TaskResponse>> getUserTasks(@AuthenticationPrincipal User user) {
         return taskService
-                .getUserTasks(user)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+            .getUserTasks(user)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<TaskResponse> createTask(
             @RequestBody TaskRequest taskRequest,
-            @AuthenticationPrincipal User user) {
+            @AuthenticationPrincipal User user
+        ) {
         return taskService
-                .createTask(taskRequest, user)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.internalServerError().build());
-
+            .createTask(taskRequest, user)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.internalServerError().build());
     }
 
     @PutMapping
-    public ResponseEntity<TaskResponse> updateTask(@RequestBody TaskUpdateRequest task,
-            @AuthenticationPrincipal User user) {
+    public ResponseEntity<TaskResponse> updateTask(
+            @RequestBody TaskUpdateRequest task,
+            @AuthenticationPrincipal User user
+        ) {
         return taskService.updateTask(task).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 }

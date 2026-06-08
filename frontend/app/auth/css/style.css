@@ -5,6 +5,15 @@
     --white: #fff;
     --light-gray: #dddddd;
     --border-gray: #979595;
+    /* Dark Theme */
+    --dark-background: #1e1f22;       /* Fundo geral mais profundo (padrão apps modernos) */
+    --dark-surface: #2b2d31;          /* Superfície dos cards, menus e formulários */
+    --dark-light-gray: #4e5058;       /* Bordas e elementos secundários sutis */
+    --dark-white: #dbdee1;            /* Texto principal (suave para não agredir os olhos) */
+    --dark-primary: #5865f2;          /* Um tom de azul ligeiramente mais vibrante para contraste no escuro */
+    --dark-hover-color: #353e9e;      /* Hover dos botões principais no dark */
+    --dark-text-muted: #949ba4;    /* Texto secundário e placeholders no dark */
+
 }
 
 * {
@@ -46,6 +55,11 @@ body {
 .form input:focus-within {
     border: 1px solid var(--primary-color);
     box-shadow: 0px 0px 4px var(--hover-color);
+}
+
+.form a {
+    color: var(--dark-primary);
+    text-decoration: none;
 }
 
 .form input {
@@ -111,4 +125,56 @@ body {
 .input-error-visible {
     height: 10px;
     opacity: 1;
+}
+
+
+.dark {
+
+    background-color: var(--dark-background);
+
+    .form {
+        background-color: var(--dark-surface);
+        color: var(--dark-white);
+        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .form input,
+    .description {
+        background-color: transparent;
+        border: 1px solid var(--dark-light-gray);
+        color: var(--dark-white);
+    }
+
+    .form button {
+        border: none;
+    }
+    
+    .form label {
+        background-color: var(--dark-surface); /* Evita que o fundo do label fique branco */
+        color: var(--dark-text-muted);
+    }
+
+    .form input:focus-within,
+    .description:focus-within {
+        border: 1px solid var(--dark-primary);
+        box-shadow: 0px 0px 4px var(--dark-hover-color);
+    }
+
+    .form input {
+        background-color: transparent !important;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        /* Usa uma sombra interna gigante para mascarar a cor nativa do navegador */
+        -webkit-box-shadow: 0 0 0 1000px var(--dark-surface) inset !important;
+        
+        /* Define a cor do texto preenchido */
+        -webkit-text-fill-color: var(--dark-white) !important;
+        
+        /* Mantém a transição suave se houver */
+        transition: background-color 5000s ease-in-out 0s;
+    }
 }

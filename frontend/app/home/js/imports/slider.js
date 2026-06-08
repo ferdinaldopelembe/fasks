@@ -13,6 +13,39 @@ export function initPageSlider() {
     });
 }
 
+export function initThemeChanger() {
+    const body = document.body;
+    const themeCircle = document.querySelector('.theme-circle');
+    const themeButton = document.querySelector('.theme-button');
+    const theme = localStorage.getItem('theme');
+
+    if (theme === 'dark') {
+        themeCircle.classList.add('span-moved');
+        body.classList.add('dark');
+    }
+
+    themeButton.addEventListener('click', () => {
+         toggleTheme();
+    });
+}
+
+function toggleTheme() {
+    const body = document.body;
+    const themeCircle = document.querySelector('.theme-circle');
+    const isDarkMode = body.classList.toggle('dark'); 
+
+    if (isDarkMode) {
+        themeCircle.classList.add('span-moved');
+        body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        themeCircle.classList.remove('span-moved');
+        body.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+    }
+
+}
+
 function toggleMenu() {
     const menu = document.getElementById('side-menu');
     const compact = !menu.classList.contains('side-menu-compact');
