@@ -35,12 +35,6 @@
 
 ---
 
-## Interface Overview (Screenshots)
-
-> **Repository Note:** Upload the screenshots to a folder in the project (e.g., `docs/screenshots/` or `assets/`) and update the image paths below.
-
----
-
 ### 1. User Registration Screen (*Sign Up*)
 <img width="1366" height="768" alt="Captura de Tela (24)" src="https://github.com/user-attachments/assets/1258116e-6441-4038-b59e-81a8850e80e2" />
 
